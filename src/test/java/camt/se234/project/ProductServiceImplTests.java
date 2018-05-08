@@ -1,6 +1,5 @@
 package camt.se234.project;
 
-
 import camt.se234.project.dao.ProductDao;
 import camt.se234.project.entity.Product;
 import camt.se234.project.service.ProductServiceImpl;
@@ -31,7 +30,6 @@ public class ProductServiceImplTests {
         productService.setProductDao(productDao);
     }
 
-
     @Test
     public void testGetAllProducts(){
 
@@ -45,8 +43,6 @@ public class ProductServiceImplTests {
                 new Product("000001L","p1","product1","p1.jpg",100.0),
                 new Product("000002L","p2","product2","p2.jpg",50.0)
         ));
-
-
 
     }
 
@@ -63,18 +59,18 @@ public class ProductServiceImplTests {
                 new Product("000001L","p1","product1","p1.jpg",100.0),
                 new Product("000002L","p2","product2","p2.jpg",150.0)
         ));
-
-
-
     }
 
     @Test
     public void testGetUnavailableProductSize(){
+
         List<Product> mockProducts = new ArrayList<>();
         mockProducts.add(new Product("000001L","p1","product1","p1.jpg",100.0));
         mockProducts.add(new Product("000002L","p2","product2","p2.jpg",-50.0));
 
         when(productDao.getProducts()).thenReturn(mockProducts);
         assertThat(productService.getUnavailableProductSize(),is(1));
+
     }
+
 }
