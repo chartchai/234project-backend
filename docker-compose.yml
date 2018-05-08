@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  backend:
+    image: lyw1024/se234-lab11-backend:latest
+    ports:
+      - "8084:8080"
+  frontend:
+    image: "dto80/project234-frontend:latest"
+    ports:
+      - "8083:80"
+
