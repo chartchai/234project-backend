@@ -13,6 +13,8 @@ import java.util.List;
 public class SaleOrderServiceImpl implements SaleOrderService {
     OrderDao orderDao;
     @Autowired
+
+
     public void setOrderDao(OrderDao orderDao) {
         this.orderDao = orderDao;
     }

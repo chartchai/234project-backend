@@ -32,4 +32,9 @@ public class SaleOrder {
         }
         return totalPrice;
     }
+
+    public SaleOrder(String saleOrderId, List<SaleTransaction> transactions) {
+        this.saleOrderId = saleOrderId;
+        this.transactions = transactions;
+    }
 }
