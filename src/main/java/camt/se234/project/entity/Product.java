@@ -16,8 +16,18 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
+
+    public Product(String productId, String name, String description, String imageLocation, double price) {
+        this.productId = productId;
+        this.name = name;
+        this.description = description;
+        this.imageLocation = imageLocation;
+        this.price = price;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     Long id;
     String productId;
     String name;
