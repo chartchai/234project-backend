@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  backend:
+    image: saksit32/234project-backend:latest
+    ports:
+      - "8086:8080"
+  frontend:
+    image: dto80/project234-frontend:latest
+    ports:
+      - "8087:80"
+    volumes:
+        type: bind
+        source: ./234project-backend
+        target: /usr/share/nginx/html/assets 
