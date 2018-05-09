@@ -57,4 +57,23 @@ public class ProductServiceImplTest {
         assertThat(productService.getAvailableProducts(), is(isNull()));
     }
 
+    @Test
+    public void testGetUnavailableProductSize(){
+        List<Product> mockProducts = new ArrayList<>();
+        mockProducts.add(new Product("D001","Milk","Drink","image/",2500));
+        mockProducts.add(new Product("D001","Milk","Drink","image/",-2500));
+        when(productDao.getProducts()).thenReturn(mockProducts);
+        assertThat(productService.getUnavailableProductSize(),is(1));
+        mockProducts.add(new Product("D001","Coke","Drink","image2/",1500));
+        mockProducts.add(new Product("D001","Coke","Drink","image2/",-1500));
+        assertThat(productService.getUnavailableProductSize(),is(2));
+    }
+    @Test (expected = NoDataException.class)
+    public void testGetUnavailableProductSizeNoData(){
+        List<Product> mockProducts = new ArrayList<>();
+        mockProducts.add(new Product("D001","Milk","Drink","image/",2500));
+        when(productDao.getProducts()).thenReturn(mockProducts);
+        assertThat(productService.getUnavailableProductSize(), is(isNull()));
+    }
+
 }
