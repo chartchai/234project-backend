@@ -1,5 +1,6 @@
 package camt.se234.project.service;
 
+import camt.se234.project.Exceptions.NoDataException;
 import camt.se234.project.dao.OrderDao;
 import camt.se234.project.entity.SaleOrder;
 import camt.se234.project.entity.SaleTransaction;
@@ -31,6 +32,9 @@ public class SaleOrderServiceImpl implements SaleOrderService {
 
     @Override
     public List<SaleOrder> getSaleOrders() {
+        if (orderDao.getOrders().size()==0){
+            throw new AssertionError();
+        }
         return orderDao.getOrders();
     }
 
@@ -41,6 +45,9 @@ public class SaleOrderServiceImpl implements SaleOrderService {
         for (SaleOrder order :
                 orders) {
             totalPrice += order.getTotalPrice();
+        }
+        if (totalPrice==0){
+            throw new NoDataException();
         }
         return totalPrice/orders.size();
     }
