@@ -1,5 +1,6 @@
 package camt.se234.project.service;
 
+import camt.se234.project.Exceptions.NoDataException;
 import camt.se234.project.dao.ProductDao;
 import camt.se234.project.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
+        if (productDao.getProducts().size()==0){
+            throw new AssertionError();
+        }
         return productDao.getProducts();
     }
 
@@ -31,11 +35,18 @@ public class ProductServiceImpl implements ProductService {
             }
             
         }
+
+        if (products.size()==0){
+            throw new NoDataException();
+        }
         return products;
     }
 
     @Override
     public int getUnavailableProductSize() {
+        if (getAllProducts().size() - getAvailableProducts().size() ==0){
+            throw new NoDataException();
+        }
 
         return getAllProducts().size() - getAvailableProducts().size();
     }

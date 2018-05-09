@@ -24,6 +24,12 @@ public class SaleOrder {
     @Builder.Default
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<SaleTransaction> transactions = new ArrayList<>();
+
+    public SaleOrder(String saleOrderId, List<SaleTransaction> transactions){
+        this.saleOrderId = saleOrderId;
+        this.transactions = transactions;
+    }
+
     public double getTotalPrice(){
         double totalPrice = 0;
         for (SaleTransaction transaction :
