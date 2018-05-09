@@ -16,6 +16,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     UserDao userDao;
     @Override
     public User authenticate(String username, String pasword) {
+        if (userDao.getUser(username,pasword).equals(null)){
+            throw new NullPointerException();
+        }
         return userDao.getUser(username,pasword);
     }
 }
