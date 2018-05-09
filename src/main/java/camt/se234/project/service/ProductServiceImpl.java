@@ -18,6 +18,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
+        if (productDao.getProducts().size()==0){
+            throw new AssertionError();
+        }
         return productDao.getProducts();
     }
 
