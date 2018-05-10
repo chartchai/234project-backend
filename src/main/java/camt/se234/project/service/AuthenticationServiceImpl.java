@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
+
     @Autowired
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
